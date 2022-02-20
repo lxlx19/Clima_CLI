@@ -70,12 +70,14 @@ def get_dados_clima(query_url):
 
 def info_clima(dados_clima, imperial=False):
     cidade = dados_clima["name"]
+    pais = dados_clima["sys"]["country"]
     clima_id = dados_clima["weather"][0]["id"]
     desc_clima = dados_clima["weather"][0]["description"]
     temperatura = dados_clima["main"]["temp"]
+    vento = dados_clima["wind"]["speed"]
 
     estilo.muda_cor(estilo.INVERTE_FUNDO)
-    print(f"{cidade:^{estilo.ESPACO}}", end="")
+    print(f"{cidade}, {pais} ", end="")
     estilo.muda_cor(estilo.RESET)
 
     simbolo, cor = seleciona_cor_clima(clima_id)
@@ -85,27 +87,33 @@ def info_clima(dados_clima, imperial=False):
     print(f"\t{desc_clima.capitalize():^{estilo.ESPACO}}", end=" ")
     estilo.muda_cor(estilo.RESET)
 
-    print(f"({temperatura}°{'F' if imperial else 'C'})")
+    print(
+        f"(🌡️ {round(temperatura,1)}°"
+        f"{'F' if imperial else 'C'})", end=" "
+    )
+    print(
+        f"(💨 vento: {round(vento, 1) if imperial else round(vento * 3.6, 1)}"
+        f"{'mph' if imperial else 'km/h'})"
+    )
 
 
 def seleciona_cor_clima(clima_id):
     if clima_id in TEMPESTADE:
-        parametros = ("💥", estilo.VERMELHO)
+        return "💥", estilo.VERMELHO
     elif clima_id in GAROA:
-        parametros = ("💧", estilo.CIANO)
+        return "💧", estilo.CIANO
     elif clima_id in CHUVA:
-        parametros = ("💦", estilo.AZUL)
+        return "💦", estilo.AZUL
     elif clima_id in NEVE:
-        parametros = ("⛄️", estilo.BRANCO)
+        return "⛄️", estilo.BRANCO
     elif clima_id in ATMOSFERA:
-        parametros = ("🌀", estilo.AZUL)
+        return "🌀", estilo.AZUL
     elif clima_id in CLARO:
-        parametros = ("🔆", estilo.AMARELO)
+        return "🔆", estilo.AMARELO
     elif clima_id in NUBLADO:
-        parametros = ("💨", estilo.BRANCO)
+        return "🌁", estilo.BRANCO
     else:
-        parametros = ("🌈", estilo.RESET)
-    return parametros
+        return "🌈", estilo.RESET
 
 
 if __name__ == "__main__":
