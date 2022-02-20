@@ -1,4 +1,4 @@
-ESPACO = 20
+ESPACO = 15
 
 INVERTE_FUNDO = "\033[;7m"
 RESET = "\033[0m"

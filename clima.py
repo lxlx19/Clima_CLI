@@ -77,7 +77,7 @@ def info_clima(dados_clima, imperial=False):
     vento = dados_clima["wind"]["speed"]
 
     estilo.muda_cor(estilo.INVERTE_FUNDO)
-    print(f"{cidade}, {pais} ", end="")
+    print(f" {cidade}, {pais} ", end="")
     estilo.muda_cor(estilo.RESET)
 
     simbolo, cor = seleciona_cor_clima(clima_id)
