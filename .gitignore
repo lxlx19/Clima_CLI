@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Visual Studio Code
+.vscode/
+
+# API Secrets
+API_KEY/
+secrets.ini
