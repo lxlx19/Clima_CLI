@@ -92,7 +92,7 @@ def info_clima(dados_clima, imperial=False):
         f"{'F' if imperial else 'C'})", end=" "
     )
     print(
-        f"(💨 vento: {round(vento, 1) if imperial else round(vento * 3.6, 1)}"
+        f"(💨 {round(vento, 1) if imperial else round(vento * 3.6, 1)}"
         f"{'mph' if imperial else 'km/h'})"
     )
 
